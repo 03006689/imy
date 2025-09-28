@@ -1,2 +1,2 @@
 **I will complete thes
-e lessons bruh!**
+e lessons bruh!\ you know**
