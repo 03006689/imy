@@ -1,31 +1,31 @@
-package com.napier.sem;
+package  com.napier.sem;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
+
+import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 
-public class App {
-    public static void main(String[] args) {
-        // MongoDB connection string
-        String uri = "mongodb://localhost:27000";
+public class App
+{
+    public static void main(String[] args)
+    {
+        // Connect to MongoDB on local system - we're using port 27000
+        MongoClient mongoClient = new MongoClient("localhost", 27000);
+        // Get a database - will create when we use it
+        MongoDatabase database = mongoClient.getDatabase("mydb");
+        // Get a collection from the database
+        MongoCollection<Document> collection = database.getCollection("test");
+        // Create a document to store
+        Document doc = new Document("name", "Kevin Sim")
+                .append("class", "DevOps")
+                .append("year", "2024")
+                .append("result", new Document("CW", 95).append("EX", 85));
+        // Add document to collection
+        collection.insertOne(doc);
 
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("mydb");
-            MongoCollection<Document> collection = database.getCollection("test");
-
-            // Insert a new document
-            Document doc = new Document("name", "Imran")
-                    .append("course", "Software Engineering")
-                    .append("year", 2025)
-                    .append("marks", new Document("CW", 95).append("EX", 90));
-
-            collection.insertOne(doc);
-
-            // Retrieve and print
-            Document myDoc = collection.find().first();
-            System.out.println(myDoc.toJson());
-        }
+        // Check document in collection
+        Document myDoc = collection.find().first();
+        System.out.println(myDoc.toJson());
     }
 }
