@@ -6,24 +6,29 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-public class App {
+public class imy {
     public static void main(String[] args) {
-        // MongoDB connection string
+        // Connect to MongoDB on local system - port 27000 (Docker mapped)
         String uri = "mongodb://localhost:27000";
 
+        // Create the client using MongoClients.create()
         try (MongoClient mongoClient = MongoClients.create(uri)) {
+            // Get a database (will create when used)
             MongoDatabase database = mongoClient.getDatabase("mydb");
+
+            // Get a collection from the database
             MongoCollection<Document> collection = database.getCollection("test");
 
-            // Insert a new document
-            Document doc = new Document("name", "Imran")
-                    .append("course", "Software Engineering")
-                    .append("year", 2025)
-                    .append("marks", new Document("CW", 95).append("EX", 90));
+            // Create a document to store
+            Document doc = new Document("name", "Kevin Sim")
+                    .append("class", "DevOps")
+                    .append("year", "2024")
+                    .append("result", new Document("CW", 95).append("EX", 85));
 
+            // Add document to collection
             collection.insertOne(doc);
 
-            // Retrieve and print
+            // Check document in collection
             Document myDoc = collection.find().first();
             System.out.println(myDoc.toJson());
         }
