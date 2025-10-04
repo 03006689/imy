@@ -5,4 +5,4 @@ e lessons bruh!\ you know**
 [![Releases](https://img.shields.io/github/release/03006689/devops/all.svg?style=flat-square)](https://github.com/03006689/devops/releases)
 
 # DevOps
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/03006689/imy/workflow for my Hello World App/release?style=flat-square)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/03006689/imy/workflow for my Hello. World App/release?style=flat-square)
